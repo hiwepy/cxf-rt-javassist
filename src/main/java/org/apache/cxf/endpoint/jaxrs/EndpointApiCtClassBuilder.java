@@ -12,6 +12,7 @@ import org.apache.cxf.endpoint.jaxrs.definition.RestMethod;
 import org.apache.cxf.endpoint.jaxrs.definition.RestParam;
 import org.apache.cxf.endpoint.utils.JaxrsEndpointApiUtils;
 
+import com.github.vindell.javassist.bytecode.CtFieldBuilder;
 import com.github.vindell.javassist.utils.ClassPoolFactory;
 import com.github.vindell.javassist.utils.JavassistUtils;
 
@@ -21,7 +22,6 @@ import javassist.CtClass;
 import javassist.CtField;
 import javassist.CtMethod;
 import javassist.CtNewConstructor;
-import javassist.Modifier;
 import javassist.NotFoundException;
 import javassist.bytecode.ClassFile;
 import javassist.bytecode.ConstPool;
@@ -128,19 +128,7 @@ public class EndpointApiCtClassBuilder implements Builder<CtClass> {
 	}
 	
 	public <T> EndpointApiCtClassBuilder newField(final Class<T> fieldClass, final String fieldName, final String fieldValue) throws CannotCompileException, NotFoundException {
-		
-		// 检查字段是否已经定义
-		if(JavassistUtils.hasField(declaring, fieldName)) {
-			return this;
-		}
-		
-		/** 添加属性字段 */
-		CtField field = new CtField(this.pool.get(fieldClass.getName()), fieldName, declaring);
-        field.setModifiers(Modifier.PROTECTED);
-
-        //新增Field
-        declaring.addField(field, "\"" + fieldValue + "\"");
-        
+		CtFieldBuilder.create(declaring, this.pool.get(fieldClass.getName()), fieldName, fieldValue);
 		return this;
 	}
 	
