@@ -25,23 +25,23 @@ import javassist.NotFoundException;
  * @see https://my.oschina.net/GameKing/blog/794580
  * @see http://wsmajunfeng.iteye.com/blog/1912983
  */
-public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder implements Builder<CtClass> {
+public class JaxrsEndpointApiImplCtClassBuilder extends JaxrsEndpointApiCtClassBuilder implements Builder<CtClass> {
 
     /** 
      * 生成的实现类名前缀 
      */  
     private static final String IMPL_CLASSNAME_PREFIX = "$Impl";  
-	private EndpointApiInterfaceCtClassBuilder classBuilder;
+	private JaxrsEndpointApiInterfaceCtClassBuilder classBuilder;
 	
-	public EndpointApiImplCtClassBuilder(final String classname) throws CannotCompileException, NotFoundException  {
+	public JaxrsEndpointApiImplCtClassBuilder(final String classname) throws CannotCompileException, NotFoundException  {
 		this(ClassPoolFactory.getDefaultPool(), classname);
 	}
   
-	public EndpointApiImplCtClassBuilder(final ClassPool pool, final String classname) throws CannotCompileException, NotFoundException {
+	public JaxrsEndpointApiImplCtClassBuilder(final ClassPool pool, final String classname) throws CannotCompileException, NotFoundException {
 		
 		super(pool, classname + "." + IMPL_CLASSNAME_PREFIX);
 		
-		this.classBuilder = new EndpointApiInterfaceCtClassBuilder(pool, classname);
+		this.classBuilder = new JaxrsEndpointApiInterfaceCtClassBuilder(pool, classname);
 		
 	}
 	
@@ -50,7 +50,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	 * @param path : Defines a URI template for the resource class or method, must not include matrix parameters.
 	 * @return
 	 */
-	public EndpointApiImplCtClassBuilder path(final String path) {
+	public JaxrsEndpointApiImplCtClassBuilder path(final String path) {
 		this.classBuilder.path(path);
 		return this;
 	}
@@ -60,7 +60,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	 * @param mediaTypes
 	 * @return
 	 */
-	public EndpointApiImplCtClassBuilder produces(final String... mediaTypes) {
+	public JaxrsEndpointApiImplCtClassBuilder produces(final String... mediaTypes) {
 		this.classBuilder.produces(mediaTypes);
 		return this;
 	}
@@ -68,7 +68,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	/**
 	 * 通过给动态类增加 <code>@WebBound</code>注解实现，数据的绑定
 	 */
-	public EndpointApiImplCtClassBuilder bind(final RestBound bound) {
+	public JaxrsEndpointApiImplCtClassBuilder bind(final RestBound bound) {
 		this.classBuilder.bind(bound);
 		return this;
 	}
@@ -85,7 +85,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	 * @throws NotFoundException 
 	 */ 
 	@Override
-	public <T> EndpointApiCtClassBuilder newMethod(final Class<T> rtClass, final RestMethod method, final RestBound bound, RestParam<?>... params) throws CannotCompileException, NotFoundException {
+	public <T> JaxrsEndpointApiCtClassBuilder newMethod(final Class<T> rtClass, final RestMethod method, final RestBound bound, RestParam<?>... params) throws CannotCompileException, NotFoundException {
 		
 		this.classBuilder.abstractMethod(rtClass, method, bound, params);
 		

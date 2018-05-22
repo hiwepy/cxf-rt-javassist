@@ -24,7 +24,7 @@ public class JaxrsApiCtClassBuilder_Test {
 	//@Test
 	public void testClass() throws Exception {
 		
-		CtClass ctClass = new EndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCase1")
+		CtClass ctClass = new JaxrsEndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCase1")
 				.path("getxx")
 				.makeField("public int k = 3;")
 				.newField(String.class, "uid", UUID.randomUUID().toString())
@@ -82,7 +82,7 @@ public class JaxrsApiCtClassBuilder_Test {
 		
 		InvocationHandler handler = new EndpointApiInvocationHandler();
 		
-		Object ctObject = new EndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCaseV2")
+		Object ctObject = new JaxrsEndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCaseV2")
 				.path("getxx")
 				.makeField("public int k = 3;")
 				.newField(String.class, "uid", UUID.randomUUID().toString())

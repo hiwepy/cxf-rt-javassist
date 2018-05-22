@@ -30,30 +30,30 @@ import javassist.NotFoundException;
  * @see https://my.oschina.net/GameKing/blog/794580
  * @see http://wsmajunfeng.iteye.com/blog/1912983
  */
-public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder implements Builder<CtClass> {
+public class JaxwsEndpointApiImplCtClassBuilder extends JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 
     /** 
      * 生成的实现类名前缀 
      */  
     private static final String IMPL_CLASSNAME_PREFIX = "$Impl";  
-	private EndpointApiInterfaceCtClassBuilder classBuilder;
+	private JaxwsEndpointApiInterfaceCtClassBuilder classBuilder;
 	
-	public EndpointApiImplCtClassBuilder(final String classname) throws CannotCompileException, NotFoundException  {
+	public JaxwsEndpointApiImplCtClassBuilder(final String classname) throws CannotCompileException, NotFoundException  {
 		this(ClassPoolFactory.getDefaultPool(), classname);
 	}
   
-	public EndpointApiImplCtClassBuilder(final ClassPool pool, final String classname) throws CannotCompileException, NotFoundException {
+	public JaxwsEndpointApiImplCtClassBuilder(final ClassPool pool, final String classname) throws CannotCompileException, NotFoundException {
 		
 		super(pool, classname + "." + IMPL_CLASSNAME_PREFIX);
 		
-		this.classBuilder = new EndpointApiInterfaceCtClassBuilder(pool, classname);
+		this.classBuilder = new JaxwsEndpointApiInterfaceCtClassBuilder(pool, classname);
 		
 	}
 	
 	/**
 	 * 添加类注解 @WebService
 	 */
-	public EndpointApiImplCtClassBuilder webService(final SoapService service) {
+	public JaxwsEndpointApiImplCtClassBuilder webService(final SoapService service) {
 		this.classBuilder.webService(service);
 		return this;
 	}
@@ -61,7 +61,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	/**
 	 * 添加类注解 @ServiceMode
 	 */
-	public EndpointApiCtClassBuilder serviceMode(final Service.Mode mode) {
+	public JaxwsEndpointApiCtClassBuilder serviceMode(final Service.Mode mode) {
 		
 		this.classBuilder.serviceMode(mode);
         
@@ -71,7 +71,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	/**
 	 * 添加类注解 @WebServiceProvider
 	 */
-	public EndpointApiCtClassBuilder webServiceProvider(String wsdlLocation, String serviceName,
+	public JaxwsEndpointApiCtClassBuilder webServiceProvider(String wsdlLocation, String serviceName,
 			String targetNamespace, String portName) {
 
 		this.classBuilder.webServiceProvider(wsdlLocation, serviceName, targetNamespace, portName);
@@ -82,7 +82,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	/**
 	 * 添加类注解 @Addressing
 	 */
-	public EndpointApiCtClassBuilder annotAddressing(final boolean enabled, final boolean required,
+	public JaxwsEndpointApiCtClassBuilder annotAddressing(final boolean enabled, final boolean required,
 			final Responses responses) {
 		
 		this.classBuilder.addressing(enabled, required, responses);
@@ -93,7 +93,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	/**
 	 * 通过给动态类增加 <code>@WebBound</code>注解实现，数据的绑定
 	 */
-	public EndpointApiImplCtClassBuilder bind(final SoapBound bound) {
+	public JaxwsEndpointApiImplCtClassBuilder bind(final SoapBound bound) {
 		this.classBuilder.bind(bound);
 		return this;
 	}
@@ -109,7 +109,7 @@ public class EndpointApiImplCtClassBuilder extends EndpointApiCtClassBuilder imp
 	 * @throws NotFoundException 
 	 */ 
 	@Override
-	public <T> EndpointApiImplCtClassBuilder newMethod(final SoapResult<T> result, final SoapMethod method, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+	public <T> JaxwsEndpointApiImplCtClassBuilder newMethod(final SoapResult<T> result, final SoapMethod method, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
 		this.classBuilder.abstractMethod(result, method, bound, params);
 		CtClass returnType = result != null ? pool.get(result.getRtClass().getName()) : CtClass.voidType;
 		CtMethod ctMethod = null;
