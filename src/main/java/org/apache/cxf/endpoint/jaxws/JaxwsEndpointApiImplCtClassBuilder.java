@@ -51,6 +51,35 @@ public class JaxwsEndpointApiImplCtClassBuilder extends JaxwsEndpointApiCtClassB
 	}
 	
 	/**
+	 * 添加 @WebService 注解
+	 * @param name： 此属性的值包含XML Web Service的名称。在默认情况下，该值是实现XML Web Service的类的名称，wsdl:portType 的名称。缺省值为 Java 类或接口的非限定名称。（字符串）
+	 * @param targetNamespace：指定你想要的名称空间，默认是使用接口实现类的包名的反缀（字符串）
+	 * @return
+	 */
+	public JaxwsEndpointApiImplCtClassBuilder webService(final String name, final String targetNamespace) {
+		return this.webService(name, targetNamespace, null, null, null, null);
+	}
+	
+	public JaxwsEndpointApiImplCtClassBuilder webService(final String name, final String targetNamespace, String serviceName) {
+		return this.webService(name, targetNamespace, serviceName, null, null, null);
+	}
+	
+	/**
+	 * @description ： 给动态类添加 @WebService 注解
+	 * @param name： 此属性的值包含XML Web Service的名称。在默认情况下，该值是实现XML Web Service的类的名称，wsdl:portType 的名称。缺省值为 Java 类或接口的非限定名称。（字符串）
+	 * @param targetNamespace：指定你想要的名称空间，默认是使用接口实现类的包名的反缀（字符串）
+	 * @param serviceName： 对外发布的服务名，指定 Web Service 的服务名称：wsdl:service。缺省值为 Java 类的简单名称 + Service。（字符串）
+	 * @param portName：  wsdl:portName。缺省值为 WebService.name+Port。（字符串）
+	 * @param wsdlLocation：指定用于定义 Web Service 的 WSDL 文档的 Web 地址。Web 地址可以是相对路径或绝对路径。（字符串）
+	 * @param endpointInterface： 服务接口全路径, 指定做SEI（Service EndPoint Interface）服务端点接口（字符串）
+	 * @return
+	 */
+	public JaxwsEndpointApiImplCtClassBuilder webService(final String name, final String targetNamespace, String serviceName,
+			String portName, String wsdlLocation, String endpointInterface) {
+		return webService(new SoapService(name, targetNamespace, serviceName, portName, wsdlLocation, endpointInterface));
+	}
+	
+	/**
 	 * 添加类注解 @WebService
 	 */
 	public JaxwsEndpointApiImplCtClassBuilder webService(final SoapService service) {

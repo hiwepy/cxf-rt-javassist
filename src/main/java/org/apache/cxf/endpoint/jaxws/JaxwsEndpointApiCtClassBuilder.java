@@ -72,11 +72,11 @@ public class JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 	 * @return
 	 */
 	public JaxwsEndpointApiCtClassBuilder webService(final String name, final String targetNamespace) {
-		return this.webService(targetNamespace, targetNamespace, null, null, null, null);
+		return this.webService(name, targetNamespace, null, null, null, null);
 	}
 	
 	public JaxwsEndpointApiCtClassBuilder webService(final String name, final String targetNamespace, String serviceName) {
-		return this.webService(targetNamespace, targetNamespace, serviceName, null, null, null);
+		return this.webService(name, targetNamespace, serviceName, null, null, null);
 	}
 	
 	/**
