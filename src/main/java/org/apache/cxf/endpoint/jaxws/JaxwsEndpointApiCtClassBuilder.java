@@ -54,6 +54,7 @@ public class JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 		
 		this.pool = pool;
 		this.declaring = JaxwsEndpointApiUtils.makeClass(pool, classname);
+		this.declaring.defrost();
 		
 		/* 获得 JaxwsHandler 类作为动态类的父类 */
 		CtClass superclass = pool.get(EndpointApi.class.getName());
@@ -226,8 +227,8 @@ public class JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 	 * @throws CannotCompileException
 	 * @throws NotFoundException 
 	 */
-	public <T> JaxwsEndpointApiCtClassBuilder newMethod(final Class<T> rtClass, final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
-		return this.newMethod(new SoapResult<T>(rtClass), new SoapMethod(methodName), null, params);
+	public <T> JaxwsEndpointApiCtClassBuilder newMethod(final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+		return this.newMethod(null, new SoapMethod(methodName), null, params);
 	}
 	
 	/**
@@ -241,8 +242,8 @@ public class JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 	 * @throws CannotCompileException
 	 * @throws NotFoundException
 	 */
-	public <T> JaxwsEndpointApiCtClassBuilder newMethod(final Class<T> rtClass, final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
-		return this.newMethod(new SoapResult<T>(rtClass), new SoapMethod(methodName), bound, params);
+	public <T> JaxwsEndpointApiCtClassBuilder newMethod( final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+		return this.newMethod(null, new SoapMethod(methodName), bound, params);
 	}
 	
 	/**

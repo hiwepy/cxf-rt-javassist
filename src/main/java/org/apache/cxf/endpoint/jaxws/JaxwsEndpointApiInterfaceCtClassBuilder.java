@@ -218,8 +218,8 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	 * @throws CannotCompileException
 	 * @throws NotFoundException 
 	 */
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final Class<T> rtClass, final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
-		return this.abstractMethod(new SoapResult<T>(rtClass), new SoapMethod(methodName), null, params);
+	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+		return this.abstractMethod(null, new SoapMethod(methodName), null, params);
 	}
 	
 	/**
@@ -233,8 +233,8 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	 * @throws CannotCompileException
 	 * @throws NotFoundException
 	 */
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final Class<T> rtClass, final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
-		return this.abstractMethod(new SoapResult<T>(rtClass), new SoapMethod(methodName), bound, params);
+	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod( final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+		return this.abstractMethod(null, new SoapMethod(methodName), bound, params);
 	}
 	
 	/**

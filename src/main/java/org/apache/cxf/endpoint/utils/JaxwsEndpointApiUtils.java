@@ -238,7 +238,7 @@ public class JaxwsEndpointApiUtils {
         methodAttr.addAnnotation(JaxwsEndpointApiUtils.annotWebMethod(constPool, method));
         
         // 添加 @WebResult 注解
-        if (StringUtils.isNotBlank(result.getName())) {
+        if (null != result ) {
 	        methodAttr.addAnnotation(JaxwsEndpointApiUtils.annotWebResult(constPool, result));
         }
         
@@ -372,7 +372,7 @@ public class JaxwsEndpointApiUtils {
 	public static <T> Annotation annotWebResult(final ConstPool constPool, final SoapResult<T> result) {
 		
 		CtAnnotationBuilder builder = CtAnnotationBuilder.create(WebResult.class, constPool)
-				.addStringMember("name", result.getName())
+				.addStringMember("name", StringUtils.isNotBlank(result.getName()) ? result.getName() : "")
 				.addBooleanMember("header", result.isHeader());
 		if (StringUtils.isNotBlank(result.getPartName())) {
 			builder.addStringMember("partName", result.getPartName());

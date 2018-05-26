@@ -12,7 +12,10 @@ import javax.jws.WebParam;
 
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.cxf.endpoint.jaxws.definition.SoapBound;
+import org.apache.cxf.endpoint.jaxws.definition.SoapMethod;
 import org.apache.cxf.endpoint.jaxws.definition.SoapParam;
+import org.apache.cxf.endpoint.jaxws.definition.SoapResult;
 import org.junit.Test;
 
 import javassist.CtClass;
@@ -20,14 +23,15 @@ import javassist.CtClass;
 @SuppressWarnings({ "rawtypes", "unchecked" })
 public class JaxwsApiCtClassBuilder_Test {
 
-	//@Test
+	@Test
 	public void testClass() throws Exception {
 		
-		CtClass ctClass = new JaxwsEndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCase1")
-				.webService("get", "http://ws.cxf.com", "getxx")
-				.makeField("public int k = 3;")
+		CtClass ctClass = new JaxwsEndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCaseV1")
+				.webService("get", "http://ws.cxf.com", "getxx").makeField("public int k = 3;")
 				.newField(String.class, "uid", UUID.randomUUID().toString())
-				.makeMethod("public void sayHello(String txt) { System.out.println(txt); }")
+				.newMethod("sayHello", new SoapParam(String.class, "text"))
+				.newMethod(new SoapResult<String>(String.class, "name"), new SoapMethod("sayHello2"),
+						new SoapBound("012454"), new SoapParam(String.class, "text", WebParam.Mode.OUT))
 				.build();
 		
 		Class clazz = ctClass.toClass();
@@ -69,7 +73,7 @@ public class JaxwsApiCtClassBuilder_Test {
 		 */
 		
 		byte[] byteArr = ctClass.toBytecode();
-		FileOutputStream output = new FileOutputStream(new File("D://FirstCaseV2.class"));
+		FileOutputStream output = new FileOutputStream(new File("D://FirstCaseV1.class"));
 		
 		IOUtils.write(byteArr, output);
 		IOUtils.closeQuietly(output);
@@ -80,13 +84,13 @@ public class JaxwsApiCtClassBuilder_Test {
 	public void testInstance() throws Exception{
 		
 		InvocationHandler handler = new EndpointApiInvocationHandler();
-		
+
 		Object ctObject = new JaxwsEndpointApiCtClassBuilder("org.apache.cxf.spring.boot.FirstCaseV2")
-				.webService("get", "http://ws.cxf.com", "getxx")
-				.makeField("public int k = 3;")
+				.webService("get", "http://ws.cxf.com", "getxx").makeField("public int k = 3;")
 				.newField(String.class, "uid", UUID.randomUUID().toString())
-				.newMethod(String.class, "sayHello", new SoapParam(String.class, "text"))
-				.newMethod(String.class, "sayHello2", new SoapParam(String.class, "text", WebParam.Mode.OUT))
+				.newMethod("sayHello", new SoapParam(String.class, "text"))
+				.newMethod(new SoapResult<String>(String.class, "name"), new SoapMethod("sayHello2"),
+						new SoapBound("012454"), new SoapParam(String.class, "text", WebParam.Mode.OUT))
 				.toInstance(handler);
 		
 		Class clazz = ctObject.getClass();

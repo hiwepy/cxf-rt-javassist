@@ -21,18 +21,6 @@ package org.apache.cxf.endpoint.jaxws.definition;
  */
 public class SoapResult<T> {
 
-	public SoapResult(Class<T> rtClass) {
-		this.rtClass = rtClass;
-	}
-	
-	public SoapResult(Class<T> rtClass, String name, String targetNamespace, boolean header, String partName) {
-		this.rtClass = rtClass;
-		this.name = name;
-		this.targetNamespace = targetNamespace;
-		this.header = header;
-		this.partName = partName;
-	}
-
 	/**
 	 * 返回结果对象类型
 	 */
@@ -59,6 +47,19 @@ public class SoapResult<T> {
 	 * 4、partName：指定 RPC 或 DOCUMENT/BARE 操作的结果的部件名称。缺省值为@WebResult.name。（字符串）
 	 */
 	private String partName = "";
+	
+	public SoapResult(Class<T> rtClass, String name) {
+		this.rtClass = rtClass;
+		this.name = name;
+	}
+	
+	public SoapResult(Class<T> rtClass, String name, String targetNamespace, boolean header, String partName) {
+		this.rtClass = rtClass;
+		this.name = name;
+		this.targetNamespace = targetNamespace;
+		this.header = header;
+		this.partName = partName;
+	}
 
 	public Class<T> getRtClass() {
 		return rtClass;
