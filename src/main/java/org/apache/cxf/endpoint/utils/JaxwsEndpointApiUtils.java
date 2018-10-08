@@ -130,12 +130,12 @@ public class JaxwsEndpointApiUtils {
 
 	/**
 	 * 构造 @WebServiceProvider 注解
-	 * @param constPool	
+	 * @param constPool			: {@link ConstPool} instance
 	 * @param wsdlLocation		：Location of the WSDL description for the service.
 	 * @param serviceName		：Service name.
 	 * @param targetNamespace	：Target namespace for the service
 	 * @param portName			：Port name.
-	 * @return
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotWebServiceProvider(final ConstPool constPool, String wsdlLocation,
 			String serviceName, String targetNamespace, String portName) {
@@ -153,6 +153,9 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebService 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param service			: {@link SoapService} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotWebService(final ConstPool constPool, final SoapService service) {
 
@@ -179,6 +182,11 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @Addressing 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param enabled			: the value of enabled
+	 * @param required			: the value of required
+	 * @param responses			: {@link Responses} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotAddressing(final ConstPool constPool, final boolean enabled, final boolean required,
 			final Responses responses) {
@@ -192,6 +200,9 @@ public class JaxwsEndpointApiUtils {
 
 	/**
 	 * 构造 @ServiceMode 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param mode				: the mode of {@link Service}
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotServiceMode(final ConstPool constPool, final Service.Mode mode) {
 		return CtAnnotationBuilder.create(ServiceMode.class, constPool).addEnumMember("value", mode).build();
@@ -199,6 +210,10 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @HandlerChain 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param name				: the value of name
+	 * @param file				: the value of file
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotHandlerChain(final ConstPool constPool, String name, String file) {
 
@@ -215,14 +230,16 @@ public class JaxwsEndpointApiUtils {
 	
 	
 	/**
+	 * 
 	 * 为方法添加 @WebMethod、 @WebResult、@WebBound、@WebParam 注解
 	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @param ctMethod
-	 * @param constPool
-	 * @param result
-	 * @param method
-	 * @param bound
-	 * @param params
+	 * @param ctMethod			: {@link CtMethod} instance
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param result			: {@link SoapResult} instance
+	 * @param method			: {@link SoapMethod} instance
+	 * @param bound				: {@link SoapBound} instance
+	 * @param <T>				: 泛型参数
+	 * @param params			: The {@link SoapParam} params
 	 */
 	public static <T> void methodAnnotations(final CtMethod ctMethod, final ConstPool constPool, final SoapResult<T> result, final SoapMethod method, final SoapBound bound, SoapParam<?>... params) {
 		
@@ -258,7 +275,9 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 设置方法体
-	 * @throws CannotCompileException 
+	 * @param ctMethod			: {@link CtMethod} instance
+	 * @param method			: {@link SoapMethod} instance
+	 * @throws CannotCompileException if can't compile 
 	 */
 	public static void methodBody(final CtMethod ctMethod, final SoapMethod method) throws CannotCompileException {
 		
@@ -278,8 +297,10 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 设置方法异常捕获逻辑
-	 * @throws NotFoundException 
-	 * @throws CannotCompileException 
+	 * @param pool				: {@link ClassPool} instance
+	 * @param ctMethod			: {@link CtMethod} instance
+	 * @throws NotFoundException  if not found
+	 * @throws CannotCompileException if can't compile
 	 */
 	public static void methodCatch(final ClassPool pool, final CtMethod ctMethod) throws NotFoundException, CannotCompileException {
 		
@@ -291,6 +312,9 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebBound 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param bound				: {@link SoapBound} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotWebBound(final ConstPool constPool, final SoapBound bound) {
 
@@ -305,6 +329,9 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebMethod 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param method			: {@link SoapMethod} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotWebMethod(final ConstPool constPool, final SoapMethod method) {
 		
@@ -320,8 +347,11 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebParam 参数注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param params			: The {@link SoapParam} params
+	 * @return {@link Annotation} instance
 	 */
-	public static <T> Annotation[][] annotParams(final ConstPool constPool, SoapParam<?>... params) {
+	public static Annotation[][] annotParams(final ConstPool constPool, SoapParam<?>... params) {
 
 		// 添加 @WebParam 参数注解
 		if (params != null && params.length > 0) {
@@ -368,6 +398,10 @@ public class JaxwsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebResult 注解
+	 * @param constPool			: {@link ConstPool} instance
+	 * @param result			: {@link SoapResult} instance
+	 * @param <T>				: 泛型参数
+	 * @return {@link Annotation} instance
 	 */
 	public static <T> Annotation annotWebResult(final ConstPool constPool, final SoapResult<T> result) {
 		

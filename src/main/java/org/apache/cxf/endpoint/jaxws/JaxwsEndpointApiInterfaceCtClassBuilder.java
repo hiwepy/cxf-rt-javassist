@@ -64,7 +64,7 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	 * 给动态类添加 @WebService 注解
 	 * @param name： 此属性的值包含XML Web Service的名称。在默认情况下，该值是实现XML Web Service的类的名称，wsdl:portType 的名称。缺省值为 Java 类或接口的非限定名称。（字符串）
 	 * @param targetNamespace：指定你想要的名称空间，默认是使用接口实现类的包名的反缀（字符串）
-	 * @return
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder webService(final String name, final String targetNamespace) {
 		return this.webService(name, targetNamespace, null, null, null, null);
@@ -82,7 +82,7 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	 * @param portName：  wsdl:portName。缺省值为 WebService.name+Port。（字符串）
 	 * @param wsdlLocation：指定用于定义 Web Service 的 WSDL 文档的 Web 地址。Web 地址可以是相对路径或绝对路径。（字符串）
 	 * @param endpointInterface： 服务接口全路径, 指定做SEI（Service EndPoint Interface）服务端点接口（字符串）
-	 * @return
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder webService(final String name, final String targetNamespace, String serviceName,
 			String portName, String wsdlLocation, String endpointInterface) {
@@ -92,6 +92,8 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 添加类注解 @WebService
+	 * @param service			: {@link SoapService} instance
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder webService(final SoapService service) {
 
@@ -104,6 +106,8 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 添加类注解 @ServiceMode
+	 * @param mode			: The mode of {@link Service}
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder serviceMode(final Service.Mode mode) {
 		
@@ -116,6 +120,11 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 添加类注解 @WebServiceProvider
+	 * @param wsdlLocation			: The value of wsdlLocation
+	 * @param serviceName			: The value of serviceName
+	 * @param targetNamespace		: The value of targetNamespace
+	 * @param portName				: The value of portName
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder webServiceProvider(String wsdlLocation, String serviceName,
 			String targetNamespace, String portName) {
@@ -130,6 +139,10 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 添加类注解 @Addressing
+	 * @param enabled			: The value of enabled
+	 * @param required			: The value of required
+	 * @param responses			: The {@link Responses}
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder addressing(final boolean enabled, final boolean required,
 			final Responses responses) {
@@ -143,6 +156,9 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 通过给动态类增加 <code>@WebBound</code>注解实现，数据的绑定
+	 * @param uid			: The value of uid
+	 * @param json			: The value of json
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder bind(final String uid, final String json) {
 		return bind(new SoapBound(uid, json));
@@ -150,6 +166,8 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 通过给动态类增加 <code>@WebBound</code>注解实现，数据的绑定
+	 * @param bound			: The {@link SoapBound} instance
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance
 	 */
 	public JaxwsEndpointApiInterfaceCtClassBuilder bind(final SoapBound bound) {
 
@@ -172,8 +190,10 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
      * (semicolon).
      *
      * @param src               the source text.
+     * @return {@link JaxwsEndpointApiCtClassBuilder} instance
+     * @throws CannotCompileException if can't compile
      */
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder makeField(final String src) throws CannotCompileException {
+	public JaxwsEndpointApiInterfaceCtClassBuilder makeField(final String src) throws CannotCompileException {
 		//创建属性
         declaring.addField(CtField.make(src, declaring));
 		return this;
@@ -196,7 +216,7 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 		return this;
 	}
 	
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder removeField(final String fieldName) throws NotFoundException {
+	public JaxwsEndpointApiInterfaceCtClassBuilder removeField(final String fieldName) throws NotFoundException {
 		
 		// 检查字段是否已经定义
 		if(!JavassistUtils.hasField(declaring, fieldName)) {
@@ -211,29 +231,26 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	/**
 	 * 
 	 * 根据参数构造一个新的方法
-	 * @param rtClass 		：方法返回类型
 	 * @param methodName 	：方法名称
 	 * @param params		： 参数信息
-	 * @return
-	 * @throws CannotCompileException
-	 * @throws NotFoundException 
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance 
+	 * @throws CannotCompileException if can't compile
+	 * @throws NotFoundException  if not found
 	 */
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+	public JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final String methodName, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
 		return this.abstractMethod(null, new SoapMethod(methodName), null, params);
 	}
 	
 	/**
 	 * 
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @param rtClass 		：方法返回类型
 	 * @param methodName 	：方法名称
 	 * @param bound			：方法绑定数据信息
 	 * @param params		： 参数信息
-	 * @return
-	 * @throws CannotCompileException
-	 * @throws NotFoundException
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance 
+	 * @throws CannotCompileException if can't compile
+	 * @throws NotFoundException  if not found
 	 */
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod( final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
+	public JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod( final String methodName, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
 		return this.abstractMethod(null, new SoapMethod(methodName), bound, params);
 	}
 	
@@ -244,9 +261,10 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	 * @param method ：方法注释信息
 	 * @param bound  ：方法绑定数据信息
 	 * @param params ： 参数信息
-	 * @return
-	 * @throws CannotCompileException
-	 * @throws NotFoundException 
+	 * @param <T> 	   ： 参数泛型
+	 * @return {@link JaxwsEndpointApiCtClassBuilder} instance 
+	 * @throws CannotCompileException if can't compile
+	 * @throws NotFoundException  if not found
 	 */ 
 	public <T> JaxwsEndpointApiInterfaceCtClassBuilder abstractMethod(final SoapResult<T> result, final SoapMethod method, final SoapBound bound, SoapParam<?>... params) throws CannotCompileException, NotFoundException {
 	       
@@ -276,7 +294,7 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
         return this;
 	}
 	
-	public <T> JaxwsEndpointApiInterfaceCtClassBuilder removeMethod(final String methodName, SoapParam<?>... params) throws NotFoundException {
+	public JaxwsEndpointApiInterfaceCtClassBuilder removeMethod(final String methodName, SoapParam<?>... params) throws NotFoundException {
 		
 		// 有参方法
 		if(params != null && params.length > 0) {
@@ -313,10 +331,10 @@ public class JaxwsEndpointApiInterfaceCtClassBuilder implements Builder<CtClass>
 	
 	/**
 	 * 
-	 * javassist在加载类时会用Hashtable将类信息缓存到内存中，这样随着类的加载，内存会越来越大，甚至导致内存溢出。如果应用中要加载的类比较多，建议在使用完CtClass之后删除缓存
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @return
-	 * @throws CannotCompileException
+	 * javassist在加载类时会用Hashtable将类信息缓存到内存中，这样随着类的加载，内存会越来越大，甚至导致内存溢出。
+	 * 如果应用中要加载的类比较多，建议在使用完CtClass之后删除缓存
+	 * @return The Class 
+	 * @throws CannotCompileException if can't compile
 	 */
 	public Class<?> toClass() throws CannotCompileException {
         try {

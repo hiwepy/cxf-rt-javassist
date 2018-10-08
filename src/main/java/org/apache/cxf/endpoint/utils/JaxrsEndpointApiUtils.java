@@ -137,6 +137,9 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 构造  @Path 注解
+	 * @param constPool {@link ConstPool} instance
+	 * @param path the path
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotPath(final ConstPool constPool, String path) {
 		return CtAnnotationBuilder.create(Path.class, constPool).addStringMember("value", path).build();
@@ -144,6 +147,9 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 构造  @Produces 注解
+	 * @param constPool {@link ConstPool} instance
+	 * @param mediaTypes the media types
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotProduces(final ConstPool constPool, String... mediaTypes) {
 		
@@ -158,12 +164,11 @@ public class JaxrsEndpointApiUtils {
 	/**
 	 * 为方法添加 @HttpMethod、 @GET、 @POST、 @PUT、 @DELETE、 @PATCH、 @HEAD、 @OPTIONS、@Path、、@Consumes、@Produces、@RestBound、@RestParam 注解
 	 * @author 		： <a href="https://github.com/vindell">vindell</a>
-	 * @param ctMethod
-	 * @param constPool
-	 * @param result
-	 * @param method
-	 * @param bound
-	 * @param params
+	 * @param ctMethod {@link CtMethod} instance
+	 * @param constPool {@link ConstPool} instance 
+	 * @param method {@link RestMethod} instance 
+	 * @param bound {@link RestBound} instance
+	 * @param params the params
 	 * @see HttpMethod
 	 * @see GET
 	 * @see POST
@@ -173,7 +178,7 @@ public class JaxrsEndpointApiUtils {
 	 * @see HEAD
 	 * @see OPTIONS
 	 */
-	public static <T> void methodAnnotations(final CtMethod ctMethod, final ConstPool constPool, final RestMethod method, final RestBound bound, RestParam<?>... params) {
+	public static void methodAnnotations(final CtMethod ctMethod, final ConstPool constPool, final RestMethod method, final RestBound bound, RestParam<?>... params) {
 		
 		// 添加方法注解
 		AnnotationsAttribute methodAttr = JavassistUtils.getAnnotationsAttribute(ctMethod);
@@ -215,7 +220,9 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 设置方法体
-	 * @throws CannotCompileException 
+	 * @param ctMethod {@link CtMethod} instance
+	 * @param method {@link RestMethod} instance 
+	 * @throws CannotCompileException  if can't compile
 	 */
 	public static void methodBody(final CtMethod ctMethod, final RestMethod method) throws CannotCompileException {
 		
@@ -235,8 +242,10 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 设置方法异常捕获逻辑
-	 * @throws NotFoundException 
-	 * @throws CannotCompileException 
+	 * @param pool {@link ClassPool} instance 
+	 * @param ctMethod {@link CtMethod} instance
+	 * @throws NotFoundException  if not found
+	 * @throws CannotCompileException   if can't compile
 	 */
 	public static void methodCatch(final ClassPool pool, final CtMethod ctMethod) throws NotFoundException, CannotCompileException {
 		
@@ -248,6 +257,9 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 构造 @WebBound 注解
+	 * @param constPool {@link ConstPool} instance 
+	 * @param bound {@link RestBound} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotWebBound(final ConstPool constPool, final RestBound bound) {
 		
@@ -262,6 +274,9 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 根据参数 构造   @GET、 @POST、 @PUT、 @DELETE、 @PATCH、 @HEAD、 @OPTIONS 注解
+	 * @param constPool {@link ConstPool} instance 
+	 * @param method {@link RestMethod} instance
+	 * @return {@link Annotation} instance
 	 */
 	public static Annotation annotHttpMethod(final ConstPool constPool, final RestMethod method) {
 		
@@ -298,8 +313,11 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 构造 @Consumes 注解
+	 * @param constPool {@link ConstPool} instance 
+	 * @param consumes the consumes
+	 * @return {@link Annotation} instance
 	 */
-	public static <T> Annotation annotConsumes(final ConstPool constPool, String... consumes) {
+	public static Annotation annotConsumes(final ConstPool constPool, String... consumes) {
 		// 参数预处理
 		consumes = ArrayUtils.isEmpty(consumes) ? new String[] {"*/*"} : consumes;
 		CtAnnotationBuilder builder = CtAnnotationBuilder.create(Consumes.class, constPool).
@@ -309,8 +327,11 @@ public class JaxrsEndpointApiUtils {
 	
 	/**
 	 * 构造 @BeanParam 、@CookieParam、@FormParam、@HeaderParam、@MatrixParam、@PathParam、@QueryParam 参数注解
+	 * @param constPool {@link ConstPool} instance 
+	 * @param params the params
+	 * @return {@link Annotation} Array
 	 */
-	public static <T> Annotation[][] annotParams(final ConstPool constPool, RestParam<?>... params) {
+	public static Annotation[][] annotParams(final ConstPool constPool, RestParam<?>... params) {
 
 		// 添加 @WebParam 参数注解
 		if (params != null && params.length > 0) {
