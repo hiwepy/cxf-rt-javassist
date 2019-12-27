@@ -15,9 +15,9 @@ import org.apache.cxf.endpoint.jaxws.definition.SoapResult;
 import org.apache.cxf.endpoint.jaxws.definition.SoapService;
 import org.apache.cxf.endpoint.utils.JaxwsEndpointApiUtils;
 
-import com.github.vindell.javassist.bytecode.CtFieldBuilder;
-import com.github.vindell.javassist.utils.ClassPoolFactory;
-import com.github.vindell.javassist.utils.JavassistUtils;
+import com.github.hiwepy.javassist.bytecode.CtFieldBuilder;
+import com.github.hiwepy.javassist.utils.ClassPoolFactory;
+import com.github.hiwepy.javassist.utils.JavassistUtils;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -254,7 +254,7 @@ public class JaxwsEndpointApiCtClassBuilder implements Builder<CtClass> {
 	
 	/**
 	 * 
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
+	 * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
 	 * @param methodName 	：方法名称
 	 * @param bound			：方法绑定数据信息
 	 * @param params		： 参数信息

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, vindell (https://github.com/vindell).
+ * Copyright (c) 2018, hiwepy (https://github.com/hiwepy).
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -38,8 +38,8 @@ import org.apache.cxf.endpoint.jaxws.definition.SoapService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.github.vindell.javassist.bytecode.CtAnnotationBuilder;
-import com.github.vindell.javassist.utils.JavassistUtils;
+import com.github.hiwepy.javassist.bytecode.CtAnnotationBuilder;
+import com.github.hiwepy.javassist.utils.JavassistUtils;
 
 import javassist.CannotCompileException;
 import javassist.ClassPool;
@@ -232,7 +232,7 @@ public class JaxwsEndpointApiUtils {
 	/**
 	 * 
 	 * 为方法添加 @WebMethod、 @WebResult、@WebBound、@WebParam 注解
-	 * @author 		： <a href="https://github.com/vindell">vindell</a>
+	 * @author 		： <a href="https://github.com/hiwepy">hiwepy</a>
 	 * @param ctMethod			: {@link CtMethod} instance
 	 * @param constPool			: {@link ConstPool} instance
 	 * @param result			: {@link SoapResult} instance
