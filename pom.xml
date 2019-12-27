@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.github.vindell</groupId>
+	<groupId>com.github.hiwepy</groupId>
 	<artifactId>cxf-rt-javassist</artifactId>
 	<version>1.0.3-SNAPSHOT</version>
 	<description>通过javassist生成基于cxf的jaxws、jaxrs实现 </description>
@@ -208,7 +208,7 @@
 							</manifest>
 							<manifestEntries>
 								<Can-Redefine-Classes>true</Can-Redefine-Classes>
-								<Premain-Class>com.github.vindell.javassist.MyAgent2</Premain-Class>
+								<Premain-Class>com.github.hiwepy.javassist.MyAgent2</Premain-Class>
 							</manifestEntries>
 						</archive>
 					</configuration>
@@ -380,10 +380,10 @@
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<commons-io.version>2.6</commons-io.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
-		<cxf.version>3.3.1</cxf.version>
+		<cxf.version>3.3.4</cxf.version>
 		<java.version>1.8</java.version>
-		<javassist.version>3.24.0-GA</javassist.version>
-		<javassist-plus.version>1.0.2.RELEASE</javassist-plus.version>
+		<javassist.version>3.26.0-GA</javassist.version>
+		<javassist-plus.version>1.0.3-SNAPSHOT</javassist-plus.version>
 		<junit.version>4.12</junit.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<maven.version>3.0</maven.version>
@@ -466,9 +466,9 @@
 				<artifactId>javassist</artifactId>
 				<version>${javassist.version}</version>
 			</dependency>
-			<!-- https://mvnrepository.com/artifact/com.github.vindell/javassist-plus -->
+			<!-- https://mvnrepository.com/artifact/com.github.hiwepy/javassist-plus -->
 			<dependency>
-				<groupId>com.github.vindell</groupId>
+				<groupId>com.github.hiwepy</groupId>
 				<artifactId>javassist-plus</artifactId>
 				<version>${javassist-plus.version}</version>
 			</dependency>
@@ -524,7 +524,7 @@
 			<artifactId>javassist</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>com.github.vindell</groupId>
+			<groupId>com.github.hiwepy</groupId>
 			<artifactId>javassist-plus</artifactId>
 		</dependency>
 
