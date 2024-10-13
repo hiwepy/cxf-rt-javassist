@@ -8,7 +8,7 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.UUID;
 
-import javax.jws.WebParam;
+import jakarta.jws.WebParam;
 
 import org.apache.commons.beanutils.ConstructorUtils;
 import org.apache.commons.io.IOUtils;

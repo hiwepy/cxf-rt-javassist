@@ -26,39 +26,39 @@ public class RestParam<T> {
 	
 	/**
 	 * name ：参数的名称
-	 * @see javax.ws.rs.BeanParam
-	 * @see javax.ws.rs.PathParam
-	 * @see javax.ws.rs.QueryParam
-	 * @see javax.ws.rs.MatrixParam
-	 * @see javax.ws.rs.CookieParam
-	 * @see javax.ws.rs.FormParam
-	 * @see javax.ws.rs.HeaderParam
+	 * @see jakarta.ws.rs.BeanParam
+	 * @see jakarta.ws.rs.PathParam
+	 * @see jakarta.ws.rs.QueryParam
+	 * @see jakarta.ws.rs.MatrixParam
+	 * @see jakarta.ws.rs.CookieParam
+	 * @see jakarta.ws.rs.FormParam
+	 * @see jakarta.ws.rs.HeaderParam
 	 */
 	private String name;
 	
 	/**
 	 * from ：参数来源
-	 * @see javax.ws.rs.BeanParam
-	 * @see javax.ws.rs.PathParam
-	 * @see javax.ws.rs.QueryParam
-	 * @see javax.ws.rs.MatrixParam
-	 * @see javax.ws.rs.CookieParam
-	 * @see javax.ws.rs.FormParam
-	 * @see javax.ws.rs.HeaderParam
+	 * @see jakarta.ws.rs.BeanParam
+	 * @see jakarta.ws.rs.PathParam
+	 * @see jakarta.ws.rs.QueryParam
+	 * @see jakarta.ws.rs.MatrixParam
+	 * @see jakarta.ws.rs.CookieParam
+	 * @see jakarta.ws.rs.FormParam
+	 * @see jakarta.ws.rs.HeaderParam
 	 */
 	private HttpParamEnum from = HttpParamEnum.QUERY;
 	
 	/**
 	 * Defines the default value of request meta-data that is bound using one of the
 	 * following annotations: 
-	 * {@link javax.ws.rs.PathParam},
-	 * {@link javax.ws.rs.QueryParam}, 
-	 * {@link javax.ws.rs.MatrixParam},
-	 * {@link javax.ws.rs.CookieParam}, 
-	 * {@link javax.ws.rs.FormParam}, or
-	 * {@link javax.ws.rs.HeaderParam}. 
+	 * {@link jakarta.ws.rs.PathParam},
+	 * {@link jakarta.ws.rs.QueryParam}, 
+	 * {@link jakarta.ws.rs.MatrixParam},
+	 * {@link jakarta.ws.rs.CookieParam}, 
+	 * {@link jakarta.ws.rs.FormParam}, or
+	 * {@link jakarta.ws.rs.HeaderParam}. 
 	 * The default value is used if the corresponding meta-data is not present in the request.
-	 * @see javax.ws.rs.DefaultValue
+	 * @see jakarta.ws.rs.DefaultValue
 	 */
 	private String def;
 

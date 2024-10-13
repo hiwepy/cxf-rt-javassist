@@ -15,7 +15,7 @@
  */
 package org.apache.cxf.endpoint.jaxws.definition;
 
-import javax.jws.WebParam.Mode;
+import jakarta.jws.WebParam.Mode;
 
 /**
  * 注释用于定制从单个参数至 Web Service 消息部件和 XML 元素的映射。将此注释应用于客户机或服务器服务端点接口（SEI）上的方法，或者应用于 JavaBeans 端点的服务器端点实现类。
@@ -80,7 +80,7 @@ public class SoapParam<T> {
 	/**
 	 * 4、mode：此值表示此方法的参数流的方向。有效值为 IN、INOUT 和 OUT。（字符串）
 	 */
-	private javax.jws.WebParam.Mode mode = javax.jws.WebParam.Mode.IN;
+	private jakarta.jws.WebParam.Mode mode = jakarta.jws.WebParam.Mode.IN;
 	/**
 	 * 5、header：指定参数是在消息头还是消息体中。缺省值为 false。（布尔值）
 	 */
@@ -118,11 +118,11 @@ public class SoapParam<T> {
 		this.targetNamespace = targetNamespace;
 	}
 
-	public javax.jws.WebParam.Mode getMode() {
+	public jakarta.jws.WebParam.Mode getMode() {
 		return mode;
 	}
 
-	public void setMode(javax.jws.WebParam.Mode mode) {
+	public void setMode(jakarta.jws.WebParam.Mode mode) {
 		this.mode = mode;
 	}
 

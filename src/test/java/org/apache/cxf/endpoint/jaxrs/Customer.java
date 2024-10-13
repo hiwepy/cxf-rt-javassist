@@ -18,7 +18,7 @@ package org.apache.cxf.endpoint.jaxrs;
 
 import java.util.Date;  
  
-import javax.xml.bind.annotation.XmlRootElement;  
+import jakarta.xml.bind.annotation.XmlRootElement;  
  
 public class Customer {    
    private String id;    

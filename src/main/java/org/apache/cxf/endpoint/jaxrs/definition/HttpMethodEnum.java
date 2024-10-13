@@ -1,15 +1,16 @@
 package org.apache.cxf.endpoint.jaxrs.definition;
 
+import jakarta.ws.rs.HttpMethod;
+
 import java.util.NoSuchElementException;
 
-import javax.ws.rs.HttpMethod;
 
 public enum HttpMethodEnum {
 	
 	/**
      * HTTP GET method.
      */
-	GET(HttpMethod.GET), 
+	GET(HttpMethod.GET),
 	/**
      * HTTP POST method.
      */

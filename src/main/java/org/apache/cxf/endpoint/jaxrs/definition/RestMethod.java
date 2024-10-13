@@ -15,13 +15,13 @@
  */
 package org.apache.cxf.endpoint.jaxrs.definition;
 
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.HEAD;
-import javax.ws.rs.OPTIONS;
-import javax.ws.rs.PATCH;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.HEAD;
+import jakarta.ws.rs.OPTIONS;
+import jakarta.ws.rs.PATCH;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 
 public class RestMethod {
 
@@ -46,7 +46,7 @@ public class RestMethod {
 	 * Identifies the URI path that a resource class or class method will serve
 	 * requests for.
 	 * 
-	 * @see javax.ws.rs.Path
+	 * @see jakarta.ws.rs.Path
 	 */
 	private final String path;
 
@@ -66,9 +66,9 @@ public class RestMethod {
 	
 	/**
 	 * Defines the media types that the methods of a resource class or
-	 * {@link javax.ws.rs.ext.MessageBodyReader} can accept.
+	 * {@link jakarta.ws.rs.ext.MessageBodyReader} can accept.
 	 * 
-	 * @see javax.ws.rs.Consumes
+	 * @see jakarta.ws.rs.Consumes
 	 */
 	private String[] consumes;
 

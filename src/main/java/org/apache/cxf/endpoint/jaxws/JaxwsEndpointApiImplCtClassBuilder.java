@@ -3,8 +3,8 @@ package org.apache.cxf.endpoint.jaxws;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 
-import javax.xml.ws.Service;
-import javax.xml.ws.soap.AddressingFeature.Responses;
+import jakarta.xml.ws.Service;
+import jakarta.xml.ws.soap.AddressingFeature.Responses;
 
 import org.apache.commons.lang3.builder.Builder;
 import org.apache.cxf.endpoint.jaxws.definition.SoapBound;

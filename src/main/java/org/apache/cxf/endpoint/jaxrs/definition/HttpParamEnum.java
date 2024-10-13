@@ -1,18 +1,18 @@
 package org.apache.cxf.endpoint.jaxrs.definition;
 
-import javax.ws.rs.DefaultValue;
-import javax.ws.rs.Encoded;
+import jakarta.ws.rs.DefaultValue;
+import jakarta.ws.rs.Encoded;
 
 /**
  * 参数注解类型枚举
  * 
- * @see javax.ws.rs.BeanParam
- * @see javax.ws.rs.CookieParam
- * @see javax.ws.rs.HeaderParam
- * @see javax.ws.rs.MatrixParam
- * @see javax.ws.rs.FormParam
- * @see javax.ws.rs.PathParam
- * @see javax.ws.rs.QueryParam
+ * @see jakarta.ws.rs.BeanParam
+ * @see jakarta.ws.rs.CookieParam
+ * @see jakarta.ws.rs.HeaderParam
+ * @see jakarta.ws.rs.MatrixParam
+ * @see jakarta.ws.rs.FormParam
+ * @see jakarta.ws.rs.PathParam
+ * @see jakarta.ws.rs.QueryParam
  */
 public enum HttpParamEnum {
 
@@ -21,7 +21,7 @@ public enum HttpParamEnum {
 	 * aggregator" value object into a resource class field, property or resource
 	 * method parameter.
 	 * 
-	 * @see javax.ws.rs.BeanParam
+	 * @see jakarta.ws.rs.BeanParam
 	 */
 	BEAN,
 	/**
@@ -29,7 +29,7 @@ public enum HttpParamEnum {
 	 * class field, or resource class bean property. A default value can be
 	 * specified using the {@link DefaultValue} annotation.
 	 * 
-	 * @see javax.ws.rs.CookieParam
+	 * @see jakarta.ws.rs.CookieParam
 	 */
 	COOKIE,
 	/**
@@ -37,7 +37,7 @@ public enum HttpParamEnum {
 	 * class field, or resource class bean property. A default value can be
 	 * specified using the {@link DefaultValue} annotation.
 	 * 
-	 * @see javax.ws.rs.HeaderParam
+	 * @see jakarta.ws.rs.HeaderParam
 	 */
 	HEADER,
 	/**
@@ -46,7 +46,7 @@ public enum HttpParamEnum {
 	 * URL decoded unless this is disabled using the {@link Encoded} annotation. A
 	 * default value can be specified using the {@link DefaultValue} annotation.
 	 * 
-	 * @see javax.ws.rs.MatrixParam
+	 * @see jakarta.ws.rs.MatrixParam
 	 */
 	MATRIX,
 	/**
@@ -56,7 +56,7 @@ public enum HttpParamEnum {
 	 * specified using the {@link DefaultValue} annotation. If the request entity
 	 * body is absent or is an unsupported media type, the default value is used.
 	 * 
-	 * @see javax.ws.rs.FormParam
+	 * @see jakarta.ws.rs.FormParam
 	 */
 	FORM,
 	/**
@@ -66,7 +66,7 @@ public enum HttpParamEnum {
 	 * disabled using the {@link Encoded &#64;Encoded} annotation. A default value
 	 * can be specified using the {@link DefaultValue &#64;DefaultValue} annotation.
 	 * 
-	 * @see javax.ws.rs.PathParam
+	 * @see jakarta.ws.rs.PathParam
 	 */
 	PATH,
 	/**
@@ -75,7 +75,7 @@ public enum HttpParamEnum {
 	 * unless this is disabled using the {@link Encoded} annotation. A default value
 	 * can be specified using the {@link DefaultValue} annotation.
 	 * 
-	 * @see javax.ws.rs.QueryParam
+	 * @see jakarta.ws.rs.QueryParam
 	 */
 	QUERY;
 
